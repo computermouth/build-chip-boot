@@ -3,10 +3,9 @@
 set -ex
 
 PADDED_UBOOT_SIZE=0x400000
-
 UBOOT_MEM_ADDR=0x4a000000
 SPL_MEM_ADDR=0x43000000
-#UBI_MEM_ADDR=0x4b000000
+BMP_MEM_ADDR=0x4b000000
 
 prepare_uboot_script() {
     echo "nand erase 0x0 0x200000000" > "${UBOOT_SCRIPT_SRC}"
@@ -17,10 +16,11 @@ prepare_uboot_script() {
     echo "nand write.raw.noverify $SPL_MEM_ADDR 0x400000 $PADDED_SPL_SIZE" >> "${UBOOT_SCRIPT_SRC}"
     
     echo "nand write $UBOOT_MEM_ADDR 0x800000 $PADDED_UBOOT_SIZE" >> "${UBOOT_SCRIPT_SRC}"
+    echo "nand write $BMP_MEM_ADDR 0x1000000 $BMP_SIZE" >> "${UBOOT_SCRIPT_SRC}"
 #    echo "setenv bootargs root=ubi0:rootfs rootfstype=ubifs rw earlyprintk ubi.mtd=4" >> "${UBOOT_SCRIPT_SRC}"
 #    echo "setenv bootcmd 'gpio set PB2; if test -n \${fel_booted} && test -n \${scriptaddr}; then echo '(FEL boot)'; source \${scriptaddr}; fi; mtdparts; ubi part UBI; ubifsmount ubi0:rootfs; ubifsload \$fdt_addr_r /boot/sun5i-r8-chip.dtb; ubifsload \$kernel_addr_r /boot/zImage; bootz \$kernel_addr_r - \$fdt_addr_r'" >> "${UBOOT_SCRIPT_SRC}"
     echo "setenv bootargs" >> "${UBOOT_SCRIPT_SRC}"
-    echo "setenv bootcmd 'gpio set PB2; if test -n \${fel_booted} && test -n \${scriptaddr}; then echo '(FEL boot)'; source \${scriptaddr}; fi;'" >> "${UBOOT_SCRIPT_SRC}"
+    echo "setenv bootcmd 'if test -n \${fel_booted} && test -n \${scriptaddr}; then echo '(FEL boot)'; source \${scriptaddr}; fi;'" >> "${UBOOT_SCRIPT_SRC}"
     echo "setenv fel_booted 0" >> "${UBOOT_SCRIPT_SRC}"
     
     echo "echo Enabling Splash" >> "${UBOOT_SCRIPT_SRC}"
@@ -50,7 +50,7 @@ prepare_uboot_script() {
 }
 
 PADDED_SPL_SIZE=$( echo "196" | awk '{printf $1}' | xargs printf "0x%08x")
-#UBI_SIZE=$(wc -c $PWD/build-desk/desktop-rootfs.ubi.img | awk '{printf $1}' | xargs printf "0x%08x")
+BMP_SIZE=$(wc -c $PWD/Untitled.bmp | awk '{printf $1}' | xargs printf "0x%08x")
 UBOOT_SCRIPT_SRC="$PWD/chip-boot/uboot-fel.cmds"
 UBOOT_SCRIPT="$PWD/chip-boot/uboot-fel.scr"
 

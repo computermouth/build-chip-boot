@@ -2,7 +2,6 @@
 
 set -x
 
-rm -rf chip-u-boot
 rm -rf chip-boot
 
 mkdir chip-boot

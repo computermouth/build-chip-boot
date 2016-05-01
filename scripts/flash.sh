@@ -8,6 +8,8 @@ UBOOT_MEM_ADDR=0x4a000000
 PADDED_UBOOT="chip-boot/images/padded-u-boot"
 UBOOT_SCRIPT_MEM_ADDR=0x43100000
 UBOOT_SCRIPT="chip-boot/images/uboot.scr"
+BMP_MEM_ADDR=0x4b000000
+BMP="./Untitled.bmp"
 
 ${FEL} spl "${SPL}"
 
@@ -21,6 +23,8 @@ ${FEL} write $UBOOT_MEM_ADDR "${PADDED_UBOOT}" || ( echo "ERROR: could not write
 
 echo == upload u-boot script ==
 ${FEL} write $UBOOT_SCRIPT_MEM_ADDR "${UBOOT_SCRIPT}" || ( echo "ERROR: could not write ${UBOOT_SCRIPT}" && exit $? )
+
+${FEL} write $BMP_MEM_ADDR "${BMP}" || ( echo "ERROR: could not write ${BMP}" && exit $? )
 
 echo == execute the main u-boot binary ==
 ${FEL} exe $UBOOT_MEM_ADDR

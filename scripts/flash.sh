@@ -25,7 +25,7 @@ ${FEL} write $UBOOT_SCRIPT_MEM_ADDR "${UBOOT_SCRIPT}" || ( echo "ERROR: could no
 echo == execute the main u-boot binary ==
 ${FEL} exe $UBOOT_MEM_ADDR
 
-sleep 15s
+sleep 20s
 echo -e "\n\nFLASH COMPLETE.\n\n"
 
 echo "   #  #  #"
@@ -39,3 +39,4 @@ echo "  ########"
 echo "   #  #  #"
 
 echo -e "\n\nCHIP is ready to roll!\n\n"
+echo -e "\nStatus LED will flash when it's safe to unplug.\n"

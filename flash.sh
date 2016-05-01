@@ -1,13 +1,13 @@
 #!/bin/bash
 
 FEL=fel
-SPL="img-chip-boot/images/sunxi-spl.bin"
+SPL="chip-boot/images/sunxi-spl.bin"
 SPL_MEM_ADDR=0x43000000
-PADDED_SPL="img-chip-boot/images/sunxi-spl-with-ecc.bin"
+PADDED_SPL="chip-boot/images/sunxi-spl-with-ecc.bin"
 UBOOT_MEM_ADDR=0x4a000000
-PADDED_UBOOT="img-chip-boot/images/padded-u-boot"
+PADDED_UBOOT="chip-boot/images/padded-u-boot"
 UBOOT_SCRIPT_MEM_ADDR=0x43100000
-UBOOT_SCRIPT="img-chip-boot/images/uboot.scr"
+UBOOT_SCRIPT="chip-boot/images/uboot.scr"
 
 ${FEL} spl "${SPL}"
 

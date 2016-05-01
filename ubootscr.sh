@@ -56,9 +56,9 @@ UBOOT_SCRIPT="$PWD/chip-boot/uboot-fel.scr"
 
 prepare_uboot_script
 
-mkdir -p img-chip-boot/images
-cp chip-boot/padded-u-boot-dtb.bin     img-chip-boot/images/padded-u-boot
-cp chip-boot/sunxi-spl.bin             img-chip-boot/images/
-cp chip-boot/sunxi-spl-with-ecc.bin    img-chip-boot/images/
-cp chip-boot/uboot-fel.scr             img-chip-boot/images/uboot.scr
-cp chip-boot/u-boot-dtb.bin            img-chip-boot/images/
+mkdir -p chip-boot/images
+cp chip-boot/padded-u-boot-dtb.bin     chip-boot/images/padded-u-boot
+cp chip-boot/sunxi-spl.bin             chip-boot/images/
+cp chip-boot/sunxi-spl-with-ecc.bin    chip-boot/images/
+cp chip-boot/uboot-fel.scr             chip-boot/images/uboot.scr
+cp chip-boot/u-boot-dtb.bin            chip-boot/images/

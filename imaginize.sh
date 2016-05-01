@@ -12,7 +12,7 @@ pushd chip-u-boot
 
 git checkout nextthing/2016.01/next
 
-mv ../CHIP_defconfig configs/CHIP_defconfig
+#mv ../CHIP_defconfig configs/CHIP_defconfig
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- CHIP_defconfig
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j8 
